@@ -33,7 +33,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Rick & Morty Enciclopedia'),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.science)),
+        leading: Icon(Icons.science),
       ),
 
       body: SingleChildScrollView(
@@ -45,6 +45,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
               return CharacterCard(
                 title: character['name'],
                 status: character['status'],
+                species: character['species'],
                 url: character['image'],
               );
             }).toList(),

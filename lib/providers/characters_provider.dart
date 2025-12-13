@@ -10,8 +10,6 @@ class CharactersProvider extends ChangeNotifier {
 
   //Future void puede usar await, esperar
   Future<void> fetchCharacters() async {
-    print('fetch characters called');
-
     final url = 'https://rickandmortyapi.com/api/character';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
@@ -21,7 +19,5 @@ class CharactersProvider extends ChangeNotifier {
 
     //reconstruir widgets
     notifyListeners();
-
-    print('fetch characters completed');
   }
 }

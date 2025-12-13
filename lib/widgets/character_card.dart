@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CharacterCard extends StatelessWidget {
   final String title;
   final String status;
+  final String species;
   final String url;
 
   const CharacterCard({
@@ -10,6 +12,7 @@ class CharacterCard extends StatelessWidget {
     required this.title,
     required this.status,
     required this.url,
+    required this.species,
   });
 
   @override
@@ -34,11 +37,16 @@ class CharacterCard extends StatelessWidget {
       width: screenWidth * .45,
       height: screenWidth * .65,
       child: Column(
-        spacing: 10,
+        spacing: 5,
+
         children: [
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-            child: Image.network(url, width: 180, fit: BoxFit.cover),
+            child: Image.network(
+              url,
+              width: screenWidth * .45,
+              fit: BoxFit.cover,
+            ),
           ),
 
           Text(
@@ -54,7 +62,57 @@ class CharacterCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          Text(status, style: TextStyle(color: colors.secondary)),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (status == 'unknown')
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Unknown',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Icon(Icons.question_mark, size: 20, color: Colors.grey),
+                      ],
+                    ),
+                  if (status == 'Dead')
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Dead  ',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Icon(MdiIcons.skull, color: Colors.grey),
+                      ],
+                    ),
+                  if (status == 'Alive')
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Alive  ',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Icon(MdiIcons.heart, size: 20, color: Colors.grey),
+                      ],
+                    ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );
