@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//grid view
+//Container -
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
