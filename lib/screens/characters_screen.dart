@@ -1,4 +1,5 @@
 import 'package:app1/providers/characters_provider.dart';
+import 'package:app1/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/widgets/character_card.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +48,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 status: character['status'],
                 species: character['species'],
                 url: character['image'],
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const DetailsScreen(),
+                    ),
+                  );
+                },
               );
             }).toList(),
           ),

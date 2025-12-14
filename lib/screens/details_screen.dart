@@ -1,4 +1,5 @@
 import 'package:app1/widgets/character_profile_image.dart';
+import 'package:app1/widgets/info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -8,6 +9,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
       /*  extendBodyBehindAppBar: true,
@@ -19,7 +21,14 @@ class DetailsScreen extends StatelessWidget {
       ),*/
       appBar: AppBar(
         //title: Text('Rick Sanchez'),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const DetailsScreen()),
+            );
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
       ),
 
       body: SingleChildScrollView(
@@ -31,83 +40,36 @@ class DetailsScreen extends StatelessWidget {
                 Text(
                   'Information',
                   style: TextStyle(
-                    color: const Color.fromARGB(255, 83, 83, 83),
+                    color: colors.secondary,
                     fontWeight: FontWeight.w900,
                     fontSize: 25,
                   ),
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.accessibility, size: 20, color: Colors.grey),
-
-                    Text(
-                      'Species: ${screenWidth}',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                InfoRow(
+                  value: " Species: ",
+                  value2: "Human",
+                  icon: Icons.accessibility,
                 ),
                 SizedBox(height: screenWidth * .008),
-                Row(
-                  children: [
-                    Icon(MdiIcons.skull, size: 20, color: Colors.grey),
-
-                    Text(
-                      'Status: Unknown',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                InfoRow(
+                  value: " Status: ",
+                  value2: "Human",
+                  icon: MdiIcons.skull,
                 ),
                 SizedBox(height: screenWidth * .008),
 
-                Row(
-                  children: [
-                    Icon(Icons.science, size: 20, color: Colors.grey),
-
-                    Text(
-                      'Type: Unknown',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                InfoRow(value: " Type: ", value2: "Type", icon: Icons.science),
+                SizedBox(height: screenWidth * .008),
+                InfoRow(
+                  value: " Gender: ",
+                  value2: "Human",
+                  icon: Icons.female,
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.female, size: 20, color: Colors.grey),
-
-                    Text(
-                      'Gender: Unknown',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.location_on, size: 20, color: Colors.grey),
-
-                    Text(
-                      'Origin: Unknown',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
+                SizedBox(height: screenWidth * .008),
+                InfoRow(
+                  value: " Origin: ",
+                  value2: "Human",
+                  icon: Icons.location_on,
                 ),
               ],
             ),
