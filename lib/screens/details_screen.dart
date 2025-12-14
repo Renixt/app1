@@ -1,10 +1,14 @@
+import 'package:app1/screens/characters_screen.dart';
 import 'package:app1/widgets/character_profile_image.dart';
 import 'package:app1/widgets/info_row.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  final Map character;
+
+  const DetailsScreen({super.key, required this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,7 @@ class DetailsScreen extends StatelessWidget {
         //title: Text('Rick Sanchez'),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const DetailsScreen()),
-            );
+            context.pop();
           },
           icon: Icon(Icons.arrow_back),
         ),
@@ -34,44 +36,73 @@ class DetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CharacterProfileImage(),
-            Column(
-              children: [
-                Text(
-                  'Information',
-                  style: TextStyle(
-                    color: colors.secondary,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 25,
+            CharacterProfileImage(
+              name: character['name'],
+              url: character['image'],
+            ),
+            SizedBox(height: screenWidth * .008),
+            Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 0,
+                    blurRadius: 2,
+                    offset: Offset(1, 1),
                   ),
-                ),
-                InfoRow(
-                  value: " Species: ",
-                  value2: "Human",
-                  icon: Icons.accessibility,
-                ),
-                SizedBox(height: screenWidth * .008),
-                InfoRow(
-                  value: " Status: ",
-                  value2: "Human",
-                  icon: MdiIcons.skull,
-                ),
-                SizedBox(height: screenWidth * .008),
+                ],
+              ),
 
-                InfoRow(value: " Type: ", value2: "Type", icon: Icons.science),
-                SizedBox(height: screenWidth * .008),
-                InfoRow(
-                  value: " Gender: ",
-                  value2: "Human",
-                  icon: Icons.female,
-                ),
-                SizedBox(height: screenWidth * .008),
-                InfoRow(
-                  value: " Origin: ",
-                  value2: "Human",
-                  icon: Icons.location_on,
-                ),
-              ],
+              child: Column(
+                children: [
+                  Text(
+                    'Information',
+                    style: TextStyle(
+                      color: colors.primary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
+                    ),
+                  ),
+                  InfoRow(
+                    value: " Species: ",
+                    value2: character['species'],
+                    icon: Icons.accessibility,
+                  ),
+                  InfoRow(
+                    value: " Status: ",
+                    value2: character['status'],
+                    icon: MdiIcons.skull,
+                  ),
+
+                  if (character['gender'] == "Female")
+                    InfoRow(
+                      value: " Gender: ",
+                      value2: character['gender'],
+                      icon: Icons.female,
+                    ),
+                  if (character['gender'] == "Male")
+                    InfoRow(
+                      value: " Gender: ",
+                      value2: character['gender'],
+                      icon: Icons.male,
+                    ),
+                  InfoRow(
+                    value: " Origin: ",
+                    value2: character['origin']['name'],
+                    icon: Icons.location_on,
+                  ),
+                  if (character['type'] != "")
+                    InfoRow(
+                      value: " Type: ",
+                      value2: character['type'],
+                      icon: Icons.science,
+                    ),
+                ],
+              ),
             ),
           ],
         ),
@@ -79,3 +110,5 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 }
+
+//                SizedBox(height: screenWidth * .008),

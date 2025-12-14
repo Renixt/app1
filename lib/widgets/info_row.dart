@@ -14,20 +14,51 @@ class InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final colors = Theme.of(context).colorScheme;
 
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: Colors.grey),
-
-        Text(
-          value + value2,
-          style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.w500,
-            fontSize: 20,
+    return Container(
+      margin: const EdgeInsets.all(8),
+      width: double.infinity,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: colors.primary,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Icon(icon, size: screenWidth * .05, color: colors.onPrimary),
           ),
-        ),
-      ],
+
+          Text(
+            value,
+            style: TextStyle(
+              color: colors.primary,
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+          ),
+
+          const SizedBox(width: 4),
+          Expanded(
+            child: Text(
+              value2,
+              softWrap: true,
+              style: TextStyle(
+                color: colors.secondary,
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

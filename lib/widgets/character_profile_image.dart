@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CharacterProfileImage extends StatelessWidget {
-  const CharacterProfileImage({super.key});
+  final String name;
+  final String url;
+  const CharacterProfileImage({
+    super.key,
+    required this.name,
+    required this.url,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +24,7 @@ class CharacterProfileImage extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.black,
               image: DecorationImage(
-                image: NetworkImage(
-                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                ),
+                image: NetworkImage(url),
                 fit: BoxFit.cover,
               ),
             ),
@@ -31,11 +35,18 @@ class CharacterProfileImage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Text(
-                'RICK SANCHEZ',
+                name,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                   fontSize: 30,
+                  shadows: [
+                    Shadow(
+                      color: const Color.fromARGB(111, 98, 98, 98),
+                      blurRadius: 5,
+                      offset: Offset(2, 2),
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:app1/providers/characters_provider.dart';
 import 'package:app1/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/widgets/character_card.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -38,28 +39,45 @@ class _CharactersScreenState extends State<CharactersScreen> {
       ),
 
       body: SingleChildScrollView(
-        child: Center(
-          child: Wrap(
-            spacing: spacing,
-            runSpacing: runSpacing,
-            children: charactersProvider.characters.map((character) {
-              return CharacterCard(
-                title: character['name'],
-                status: character['status'],
-                species: character['species'],
-                url: character['image'],
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const DetailsScreen(),
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'Search a Character',
+                ),
+              ),
+              SizedBox(height: screenWidth * .05),
+
+              Wrap(
+                spacing: spacing,
+                runSpacing: runSpacing,
+                children: charactersProvider.characters.map((character) {
+                  return CharacterCard(
+                    title: character['name'],
+                    status: character['status'],
+                    species: character['species'],
+                    url: character['image'],
+                    onTap: () {
+                      context.push('/details', extra: character);
+                    },
                   );
-                },
-              );
-            }).toList(),
+                }).toList(),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
+
+/*Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const DetailsScreen(),
+                    ),
+                  ); */
