@@ -35,7 +35,7 @@ class CharacterCard extends StatelessWidget {
       ),
 
       width: screenWidth * .45,
-      height: screenWidth * .65,
+      height: screenWidth * .60,
       child: Column(
         spacing: 5,
 
@@ -62,57 +62,57 @@ class CharacterCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (status == 'unknown')
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Unknown',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Icon(Icons.question_mark, size: 20, color: Colors.grey),
-                      ],
-                    ),
-                  if (status == 'Dead')
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Dead  ',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Icon(MdiIcons.skull, color: Colors.grey),
-                      ],
-                    ),
-                  if (status == 'Alive')
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Alive  ',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Icon(MdiIcons.heart, size: 20, color: Colors.grey),
-                      ],
-                    ),
-                ],
-              ),
-            ],
-          ),
+          // Column(
+          //   children: [
+          //     Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         if (status == 'unknown')
+          //           Row(
+          //             mainAxisSize: MainAxisSize.min,
+          //             children: [
+          //               Text(
+          //                 'Unknown',
+          //                 style: TextStyle(
+          //                   color: Colors.grey,
+          //                   fontWeight: FontWeight.w500,
+          //                 ),
+          //               ),
+          //               Icon(Icons.question_mark, size: 20, color: Colors.grey),
+          //             ],
+          //           ),
+          //         if (status == 'Dead')
+          //           Row(
+          //             mainAxisSize: MainAxisSize.min,
+          //             children: [
+          //               Text(
+          //                 'Dead  ',
+          //                 style: TextStyle(
+          //                   color: Colors.grey,
+          //                   fontWeight: FontWeight.w500,
+          //                 ),
+          //               ),
+          //               Icon(MdiIcons.skull, color: Colors.grey),
+          //             ],
+          //           ),
+          //         if (status == 'Alive')
+          //           Row(
+          //             mainAxisSize: MainAxisSize.min,
+          //             children: [
+          //               Text(
+          //                 'Alive  ',
+          //                 style: TextStyle(
+          //                   color: Colors.grey,
+          //                   fontWeight: FontWeight.w500,
+          //                 ),
+          //               ),
+          //               Icon(MdiIcons.heart, size: 20, color: Colors.grey),
+          //             ],
+          //           ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

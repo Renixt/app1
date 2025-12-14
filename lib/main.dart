@@ -1,5 +1,6 @@
 import 'package:app1/providers/characters_provider.dart';
 import 'package:app1/screens/characters_screen.dart';
+import 'package:app1/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
-        home: const CharactersScreen(),
+        home: const DetailsScreen(),
       ),
     );
   }
