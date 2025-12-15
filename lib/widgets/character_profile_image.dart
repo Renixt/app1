@@ -42,7 +42,7 @@ class CharacterProfileImage extends StatelessWidget {
                   fontSize: 30,
                   shadows: [
                     Shadow(
-                      color: const Color.fromARGB(111, 98, 98, 98),
+                      color: const Color.fromARGB(125, 46, 45, 45),
                       blurRadius: 5,
                       offset: Offset(2, 2),
                     ),

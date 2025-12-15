@@ -28,34 +28,44 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   Widget build(BuildContext context) {
     final charactersProvider = context.watch<CharactersProvider>();
+    final filteredCharacters = charactersProvider.characters.where((character) {
+      final name = character['name'].toString().toLowerCase();
+      final search = charactersProvider.searchTerm.toString().toLowerCase();
+
+      return name.contains(search);
+    }).toList();
 
     final screenWidth = MediaQuery.of(context).size.width;
     final spacing = screenWidth * 0.02;
     final runSpacing = screenWidth * 0.03;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rick & Morty Enciclopedia'),
+        title: Text('Rick & Morty Encyclopedia'),
         leading: Icon(Icons.science),
       ),
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Search a Character',
+                  prefixIcon: Icon(Icons.search),
                 ),
+                onChanged: (value) {
+                  context.read<CharactersProvider>().setSearchTerm(value);
+                },
               ),
               SizedBox(height: screenWidth * .05),
 
               Wrap(
                 spacing: spacing,
                 runSpacing: runSpacing,
-                children: charactersProvider.characters.map((character) {
+                children: filteredCharacters.map((character) {
                   return CharacterCard(
                     title: character['name'],
                     status: character['status'],
@@ -80,4 +90,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     MaterialPageRoute(
                       builder: (context) => const DetailsScreen(),
                     ),
-                  ); */
+                  ); 
+                  
+                  
+                  
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.clear),
+                    onPressed: () {
+                      context.read<CharactersProvider>().setSearchTerm('');
+                    },
+                  ),*/

@@ -8,6 +8,13 @@ import 'package:http/http.dart' as http;
 class CharactersProvider extends ChangeNotifier {
   List<dynamic> characters = [];
 
+  String searchTerm = '';
+
+  void setSearchTerm(String value) {
+    searchTerm = value;
+    notifyListeners();
+  }
+
   //Future void puede usar await, esperar
   Future<void> fetchCharacters() async {
     final url = 'https://rickandmortyapi.com/api/character';
